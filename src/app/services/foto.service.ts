@@ -11,6 +11,7 @@ import { Foto} from 'src/app/models/foto.interface'
 
 export class FotoService {
   public fotos: Foto [] = [];
+  private PHOTO_STORAGE: string = 'fotos'
 
 
   constructor(private storage:Storage) { }
@@ -25,6 +26,11 @@ export class FotoService {
 
     const savedImageFile = await this.savePicture(fotoCapturada)
     this.fotos.unshift(savedImageFile)
+
+    this.storage.set(
+      this.PHOTO_STORAGE,
+      JSON.stringify(this.fotos)
+    );
 
   }
   public async savePicture(cameraPhoto: CameraPhoto){
@@ -57,8 +63,8 @@ export class FotoService {
     reader.readAsDataURL(blob)
   })
 
-  public async loadSave() {
-    const listaFoto = await this.storage.get('listaFoto')
+  public async loadSaved() {
+    const listaFoto = await this.storage.get(this.PHOTO_STORAGE)
     this.fotos = JSON.parse(listaFoto.value)|| []
 
     for(let foto of this.fotos){
@@ -69,7 +75,7 @@ export class FotoService {
       })
 
       // solo para la web
-      
+      foto.webviewPath = `data:image/jpeg;base64,${readFile.data}`
     }
   }
 
