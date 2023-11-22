@@ -13,4 +13,8 @@ export class Tab1Page {
     this.fotoService.NuevaImagenGaleria()
   }
 
+  async ngOnInit() {
+    await this.fotoService.loadSaved()
+  }
+
 }
