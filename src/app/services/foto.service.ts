@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import {Camera,CameraPhoto ,CameraResultType , CameraSource ,Photo } from '@capacitor/camera'
 import { Filesystem , Directory} from '@capacitor/filesystem'
-import { Storage } from '@ionic/storage'
+import { Storage } from '@ionic/storage-angular'
 import { Foto} from 'src/app/models/foto.interface'
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FotoService {
   public fotos: Foto [] = [];
 
 
-  constructor() { }
+  constructor(private storage:Storage) { }
 
   public async NuevaImagenGaleria()
   {
@@ -55,6 +56,24 @@ export class FotoService {
     }
     reader.readAsDataURL(blob)
   })
+
+  public async loadSave() {
+    const listaFoto = await this.storage.get('listaFoto')
+    this.fotos = JSON.parse(listaFoto.value)|| []
+
+    for(let foto of this.fotos){
+      // lectura de las fotos almacenadas
+      const readFile = await Filesystem.readFile({
+        path: foto.filepath,
+        directory: Directory.Data
+      })
+
+      // solo para la web
+      
+    }
+  }
+
+
 
 
 }
