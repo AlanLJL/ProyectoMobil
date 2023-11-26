@@ -42,7 +42,15 @@ export class RegistroPage implements OnInit {
       await alert.present();
       return;
     }
-
+    if(this.formularioRegistro.valid){
+      const alert = await this.alertController.create({
+        header: 'Registro exitoso',
+        buttons: ['Aceptar']
+      });
+  
+      await alert.present();
+      return;
+    }
     var usuario = {
       nombre: f.nombre,
       password: f.password

@@ -14,7 +14,7 @@ export class FotoService {
   private PHOTO_STORAGE: string = 'fotos'
 
 
-  constructor(private storage:Storage) { }
+  constructor(private storagePhoto:Storage) { }
 
   public async NuevaImagenGaleria()
   {
@@ -22,12 +22,12 @@ export class FotoService {
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
       quality: 100
-    })
+    });
 
     const savedImageFile = await this.savePicture(fotoCapturada)
     this.fotos.unshift(savedImageFile)
 
-    this.storage.set(
+    this.storagePhoto.set(
       this.PHOTO_STORAGE,
       JSON.stringify(this.fotos)
     );
@@ -49,9 +49,9 @@ export class FotoService {
   }
   public async readAsBase64(cameraPhoto: CameraPhoto){
     const response = await fetch(cameraPhoto.webPath!)
-    const blob = await response.blob()
+    const blob = await response.blob();
 
-    return await this.convertBlobToBase64(blob) as string
+    return await this.convertBlobToBase64(blob) as string;
   }
 
   convertBlobToBase64 = (blob: Blob) => new Promise((resolve,reject) =>{
@@ -64,8 +64,8 @@ export class FotoService {
   })
 
   public async loadSaved() {
-    const listaFoto = await this.storage.get(this.PHOTO_STORAGE)
-    this.fotos = JSON.parse(listaFoto.value)|| []
+    const listaFoto = await this.storagePhoto.get(this.PHOTO_STORAGE)
+    this.fotos = JSON.parse(listaFoto.value) || []
 
     for(let foto of this.fotos){
       // lectura de las fotos almacenadas

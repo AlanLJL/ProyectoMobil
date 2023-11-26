@@ -1,32 +1,27 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <!-- <ion-toolbar color="primary">
     <ion-title>Login</ion-title>
-  </ion-toolbar>
+  </ion-toolbar> -->
+  <link rel="stylesheet" type="text/css" href="login.page.scss">
 </ion-header>
 
-<ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Login</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <form [formGroup]="formularioLogin">
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input formControlName="nombre"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>
-        </ion-item>
-      </form>
-      <br>
-      <ion-button (click)="ingresar()">
-        Ingresar
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+<ion-content class="login-box">
+  <img src="img/logo.png" class="avatar" alt="Avatar Image">
+  <ion-title>Login</ion-title>
+  <form [formGroup]="formularioLogin">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+  </form>
+  <br>
+  <ion-button (click)="ingresar()">
+    Ingresar
+  </ion-button>
 
 <ion-footer>
   <ion-toolbar color="primary">
