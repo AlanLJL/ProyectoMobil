@@ -25,7 +25,7 @@ export class TaskService {
 
   createTask(task:Task) {
     const path = `${this.api}/todos`;
-    return this.http.post(path,task)
+    return this.http.post<Task>(path, task);
   }
 
   updateTask(task:Task){
