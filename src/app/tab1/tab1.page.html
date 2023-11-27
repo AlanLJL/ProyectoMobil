@@ -4,12 +4,21 @@
       Galeria de Fotos
     </ion-title>
   </ion-toolbar>
+  <link rel="stylesheet" type="text/css" href="tab1.page.scss">
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col side="6" 
+        *ngFor="let foto of fotoService.fotos; index as posicion">
+        <ion-img [src]="foto.webviewPath"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="GaleriaDeFotos()" >
-      <ion-icon name="camara"></ion-icon>
+      <ion-icon name="camera-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+    </ion-fab>
 </ion-content>
