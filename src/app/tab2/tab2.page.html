@@ -11,13 +11,13 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item-sliding *ngFor="let task of tasks ;">
+    <ion-item-sliding *ngFor="let task of tasks ; let i = index">
       <ion-item>
         <ion-label>{{ task.title }}</ion-label>
         <ion-checkbox [checked]="task.completed" slot="start"></ion-checkbox>
       </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option  color="danger">
+      <ion-item-options side="end" >
+        <ion-item-option *ngIf="task.id" (click)="deleteTask(task.id.toString(), i)" color="danger">
           <ion-icon name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

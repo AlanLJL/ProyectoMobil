@@ -12,6 +12,7 @@ import { Task } from '../interfaces/task';
 export class Tab2Page  {
 
   tasks: Task[] = [];
+  
 
   constructor(
     private tasksService: TaskService,
@@ -74,7 +75,7 @@ export class Tab2Page  {
     });
   }
 
-   async deleteTask(id: string, index: number) {
+   deleteTask(id: string , index: number) {
     this.tasksService.deleteTask(id)
     .subscribe(() => {
       this.tasks.splice(index, 1);
