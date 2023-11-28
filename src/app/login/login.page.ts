@@ -6,6 +6,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginPage implements OnInit {
   formularioLogin: FormGroup;
 
   constructor(public fb: FormBuilder,
+    private storage: Storage,
     public alertController: AlertController,
     public navCtrl:NavController) { 
 

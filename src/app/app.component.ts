@@ -9,8 +9,11 @@ import { TaskService } from './services/task.service';
 export class AppComponent {
   title = 'angular-http-client';
   constructor(
-    private taskService:TaskService
-  ) {}
+    private taskService:TaskService ) {
+      name: String;
+      email:String;
+      phoneNumber:Number;
+    }
 
 
   getAllTask(){

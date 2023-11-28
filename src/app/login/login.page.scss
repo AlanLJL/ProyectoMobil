@@ -68,3 +68,17 @@ ion-content {
     border-radius: 20px;
   }
   
+
+ /* Estilos para el botón de ingreso */
+ ion-button {
+  --background: #007bff;
+  --color: white;
+  width: 100%;
+  margin-top: 20px;
+ }
+ 
+ ion-buttons {
+  --background: #007bff;
+  --color: white;
+ }
+ 
